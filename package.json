@@ -1,0 +1,17 @@
+{
+  "name": "baza-klientow-crm",
+  "version": "1.0.0",
+  "description": "Projekt zaliczeniowy na przedmiot \"Popularne Frameworki JavaScript\"",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.7",
+    "method-override": "^3.0.0",
+    "uuid": "^9.0.0"
+  }
+}
