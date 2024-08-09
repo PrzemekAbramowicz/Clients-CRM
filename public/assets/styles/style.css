@@ -1,9 +1,33 @@
+:root {
+	--oxford-blue: #0a1128;
+	--penn-blue: #001f54;
+	--indigo-dye: #034078;
+	--cerulean: #1282a2;
+	--white: #fefcfb;
+}
+
 body {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	background-color: #fff;
+	background-color: #555555f0;
 	font-family: Arial, Helvetica, sans-serif;
+	color: var(--oxford-blue);
+}
+
+.welcome-box {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+a.welcome {
+	font-size: 32px;
+	text-transform: uppercase;
+	font-weight: 700;
+	text-align: center;
+	padding: 0 1rem;
 }
 
 hr {
@@ -14,7 +38,6 @@ hr {
 h1,
 h2 {
 	text-align: center;
-	color: #4059ad;
 }
 
 h1 {
@@ -31,40 +54,44 @@ table {
 	text-align: left;
 	width: 80%;
 	margin: 0 auto;
+	border-collapse: collapse;
 }
 
 tr {
 	margin: 3px;
-	background-color: #97d8c4;
+	background-color: var(--cerulean);
 }
 
 tr:nth-child(2n) {
-	background-color: #eff2f1;
+	background-color: #006683;
 }
 
 thead tr,
 .header-on-left th {
-	background-color: #6b9ac4;
+	background: linear-gradient(45deg, var(--penn-blue), var(--indigo-dye));
+	color: var(--white);
 }
 
 td,
 th {
 	padding: 6px;
+	border: 1px solid var(--oxford-blue);
 }
 
 .error {
-	background: #f7a2a2;
-	border: 2px solid red;
+	background: linear-gradient(135deg, var(--indigo-dye), var(--cerulean));
+	border: 2px solid #ff0000;
 	padding: 20px;
 	margin: 10px auto;
 	width: 50%;
+	color: var(--white);
 }
 
 .error h2,
-.error p{
-    color: black;
-    margin: 1rem 0;
-    text-align: center;
+.error p {
+	color: var(--white);
+	margin: 1rem 0;
+	text-align: center;
 }
 
 tr td:nth-of-type(3) {
@@ -75,6 +102,7 @@ tr td:nth-of-type(3) {
 
 tr td:nth-of-type(3) a {
 	font-size: 16px;
+	color: white;
 }
 
 form:has(.add-client-btn) {
@@ -85,11 +113,20 @@ form:has(.add-client-btn) {
 .add-client-btn {
 	padding: 1rem 3rem;
 	font-size: 20px;
+	background: linear-gradient(90deg, var(--cerulean), var(--oxford-blue));
+	color: var(--white);
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.add-client-btn:hover {
+	background: linear-gradient(90deg, var(--penn-blue), var(--oxford-blue));
 }
 
 .back-to-homepage-box,
 .go-to-client-box {
-    margin: 1rem 0;
+	margin: 1rem 0;
 	text-align: center;
 }
 
@@ -97,15 +134,15 @@ form:has(.add-client-btn) {
 	width: 50%;
 }
 
-.form-edit-client-goto{
-    margin: 1rem 0;
-    text-align: center;
+.form-edit-client-goto {
+	margin: 1rem 0;
+	text-align: center;
 }
 
 form.form-edit-client,
 form.form-add-client {
-	background-color: #97d8c4;
-    max-width: 400px;
+	background: linear-gradient(135deg, var(--cerulean), var(--white));
+	max-width: 400px;
 	margin: 0 auto;
 	padding: 20px;
 	border-radius: 10px;
@@ -114,12 +151,14 @@ form.form-add-client {
 label {
 	display: block;
 	margin-bottom: 10px;
+	color: var(--oxford-blue);
 }
 
 p {
 	margin: 0;
-	color: white;
+	color: var(--oxford-blue);
 }
+
 h4 {
 	text-align: center;
 }
@@ -134,12 +173,14 @@ input[type='date'],
 textarea {
 	width: 97.5%;
 	padding: 5px;
-	border: none;
+	border: 1px solid var(--oxford-blue);
 	border-radius: 5px;
+	color: var(--oxford-blue);
+	background-color: var(--white);
 }
 
 input[type='date'] {
-	color: gray;
+	color: var(--oxford-blue);
 }
 
 input[type='email']:focus,
@@ -147,39 +188,52 @@ input[type='text']:focus,
 input[type='date']:focus,
 textarea:focus {
 	outline: none;
-	box-shadow: 0 0 5px #6b9ac4;
+	box-shadow: 0 0 5px var(--cerulean);
 }
 
 button {
 	font-size: 16px;
-	background-color: #f4b942;
+	background: linear-gradient(90deg, var(--cerulean), var(--oxford-blue));
 	border: none;
-	color: #ffffff;
+	color: var(--white);
 	font-weight: bold;
 	border-radius: 5px;
 	cursor: pointer;
 }
 
-form button{
-    padding: 10px 20px;
+form button {
+	padding: 10px 20px;
 }
 
 button:hover {
-	background-color: #4059ad;
+	background: linear-gradient(90deg, var(--penn-blue), var(--oxford-blue));
 }
 
 button a {
-	color: white;
+	color: var(--white);
 }
 
 a {
-    display: inline-block;
-    padding: 10px 20px;
+	display: inline-block;
+	padding: 10px 20px;
 	font-size: 18px;
 	color: black;
 	text-decoration: none;
 }
 
+a:hover {
+	color: white;
+}
+
 textarea {
 	resize: vertical;
+	background-color: var(--white);
+	color: var(--oxford-blue);
+}
+
+
+@media(min-width:768px){
+	a.welcome {
+		font-size: 72px;
+	}
 }
