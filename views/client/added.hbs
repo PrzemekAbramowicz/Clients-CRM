@@ -1,5 +1,7 @@
-<h4>Klient {{name}} został dodany do bazy</h4>
-
-{{> go-to-client}}
-
-{{> go-to-clients}}
+<section class="message-card">
+  <span class="message-icon">✓</span>
+  <p class="eyebrow">NOWA RELACJA</p>
+  <h1>Klient dodany.</h1>
+  <p>{{name}} jest już w Twojej bazie. Czas na dobrą współpracę.</p>
+  <div class="message-actions">{{> go-to-clients}}{{> go-to-client}}</div>
+</section>

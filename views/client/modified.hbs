@@ -1,5 +1,7 @@
-<h4>Klient {{name}} został zaktualizowany</h4>
-
-{{> go-to-client}}
-
-{{> go-to-clients}}
+<section class="message-card">
+  <span class="message-icon">✓</span>
+  <p class="eyebrow">WSZYSTKO AKTUALNE</p>
+  <h1>Zmiany zapisane.</h1>
+  <p>Dane klienta {{name}} zostały zaktualizowane.</p>
+  <div class="message-actions">{{> go-to-clients}}{{> go-to-client}}</div>
+</section>

@@ -1,6 +1,7 @@
-<div class="error">
-    <h2>Wystąpił błąd</h2>
-    <p>{{message}}</p>
-</div>
-
-{{> go-to-clients}}
+<section class="message-card">
+  <span class="message-icon error-icon">!</span>
+  <p class="eyebrow">COŚ POSZŁO NIE TAK</p>
+  <h1>Nie udało się.</h1>
+  <p>{{message}}</p>
+  <div class="message-actions">{{> go-to-clients}}</div>
+</section>

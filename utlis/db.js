@@ -1,67 +1,47 @@
-const { readFile, writeFile } = require('fs').promises;
-const { join } = require('path');
-const { v4: uuid } = require('uuid');
+const { readFileSync, writeFileSync, renameSync } = require('node:fs');
+const { join } = require('node:path');
+const { randomUUID } = require('node:crypto');
 const { ClientRecord } = require('../records/client-record');
+const { NotFoundError } = require('./errors');
 
 class Db {
-	constructor(dbFileName) {
-		this.dbFileName = join(__dirname, '../data', dbFileName);
-		this._load();
-	}
+  constructor(dbFileName = join(__dirname, '../data/client.json')) {
+    this.dbFileName = dbFileName;
+    this._data = JSON.parse(readFileSync(dbFileName, 'utf8')).map((obj) => new ClientRecord(obj));
+  }
 
-	async _load() {
-		this._data = JSON.parse(await readFile(this.dbFileName, 'utf-8')).map(obj => new ClientRecord(obj));
-	}
+  _save(data) {
+    // Replace the file only after the complete new contents have been written.
+    const temporaryFile = `${this.dbFileName}.tmp`;
+    writeFileSync(temporaryFile, JSON.stringify(data, null, 2), 'utf8');
+    renameSync(temporaryFile, this.dbFileName);
+    this._data = data;
+  }
 
-	_save() {
-		writeFile(this.dbFileName, JSON.stringify(this._data), 'utf-8');
-	}
+  create(obj) {
+    const id = randomUUID();
+    this._save([...this._data, new ClientRecord({ ...obj, id })]);
+    return id;
+  }
 
-	// Create
-	create(obj) {
-		const id = uuid();
-		this._data.push(new ClientRecord({
-			id,
-			...obj,
-		}));
-		this._save();
+  getAll() {
+    return this._data;
+  }
+  getOne(id) {
+    return this._data.find((client) => client.id === id);
+  }
 
-		return id;
-	}
+  update(id, changes) {
+    const current = this.getOne(id);
+    if (!current) throw new NotFoundError();
+    const updated = new ClientRecord({ ...current, ...changes, id });
+    this._save(this._data.map((client) => (client.id === id ? updated : client)));
+  }
 
-	// Read
-	getAll() {
-		return this._data;
-	}
-
-	getOne(id) {
-		return this._data.find(oneObj => oneObj.id === id);
-	}
-
-	// Update
-	update(id, newObj) {
-		this._data = this._data.map(oneObj => {
-			if (oneObj.id === id) {
-				return {
-					...oneObj,
-					...newObj,
-				};
-			} else {
-				return oneObj;
-			}
-		});
-		this._save();
-	}
-
-	// Delete
-	delete(id) {
-		this._data = this._data.filter(oneObj => oneObj.id !== id);
-		this._save();
-	}
+  delete(id) {
+    if (!this.getOne(id)) throw new NotFoundError();
+    this._save(this._data.filter((client) => client.id !== id));
+  }
 }
 
-const db = new Db('client.json');
-
-module.exports = {
-	db,
-};
+module.exports = { Db };

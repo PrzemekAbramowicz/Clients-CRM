@@ -1,49 +1,56 @@
-<h2>{{client.name}}</h2>
-
-<table class="header-on-left">
-	<tbody>
-		<tr>
-			<th>
-				E-mail
-			</th>
-			<td>
-				<a href='mailto:{{client.mail}}' target='_blank'>{{client.mail}}</a>
-			</td>
-		</tr>
-		<tr>
-			<th>
-				Imię
-			</th>
-			<td>
-				{{client.name}}
-			</td>
-		</tr>
-		<tr>
-			<th>
-				Data następnego kontaktu
-			</th>
-			<td>
-				{{client.nextContactAt}}
-			</td>
-		</tr>
-		{{#if client.notes}}
-			<tr>
-				<th>
-					Notatki
-				</th>
-				<td>
-					{{client.notes}}
-				</td>
-			</tr>
-		{{/if}}
-	</tbody>
-</table>
-
-
-<p>
-	<form class="form-edit-client-goto" method='GET' action='/client/form/edit/{{client.id}}'>
-		<button type='submit'>Edytuj dane</button>
-	</form>
-</p>
-
-{{> go-to-clients}}
+<a href="/client" class="back-link">← Wszyscy klienci</a>
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">KARTA KLIENTA</p>
+    <h1>{{client.name}}<span>.</span></h1>
+    <p>Wszystko, co warto wiedzieć przed kolejną rozmową.</p>
+  </div>
+  <a class="button primary" href="/client/form/edit/{{client.id}}">Edytuj dane ↗</a>
+</section>
+<div class="detail-grid">
+  <section class="form-card">
+    <div class="section-heading">
+      <span class="section-number">01</span>
+      <h2>Informacje kontaktowe</h2>
+    </div>
+    <dl class="client-details">
+      <div>
+        <dt>Imię lub nazwa</dt>
+        <dd>{{client.name}}</dd>
+      </div>
+      <div>
+        <dt>Adres e-mail</dt>
+        <dd><a href="mailto:{{client.mail}}">{{client.mail}} ↗</a></dd>
+      </div>
+      <div>
+        <dt>Następny kontakt</dt>
+        <dd>
+          {{#if client.nextContactAt }}{{client.nextContactAt}}{{else}}Nie ustalono terminu{{/if}}
+        </dd>
+      </div>
+    </dl>
+  </section>
+  <section class="form-card notes-card">
+    <div class="section-heading">
+      <span class="section-number">02</span>
+      <h2>Notatki</h2>
+    </div>
+    <p class="notes-text">
+      {{#if client.notes}}{{client.notes}}{{else}}Miejsce na ważne ustalenia. Dodaj notatkę podczas
+      edycji klienta.{{/if}}
+    </p>
+  </section>
+</div>
+<div class="danger-zone">
+  <div>
+    <h3>Usunięcie klienta</h3>
+    <p>Usunie dane kontaktowe i wszystkie notatki tego klienta.</p>
+  </div>
+  <form
+    method="POST"
+    action="/client/{{client.id}}?_method=DELETE"
+    data-confirm="Czy na pewno usunąć tego klienta? Tej operacji nie można cofnąć."
+  >
+    <button class="button danger" type="submit">Usuń klienta</button>
+  </form>
+</div>

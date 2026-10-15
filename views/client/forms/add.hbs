@@ -1,38 +1,65 @@
-<h2>Dodawanie nowego klienta do bazy</h2>
-<form class="form-add-client" method='POST' action='/client'>
-	<label>
-		<p>
-			E-mail:
-		</p>
-		<p>
-			<input type='email' name='mail' required/>
-		</p>
-	</label>
-	<label>
-		<p>
-			Imię:
-		</p>
-		<p>
-			<input type='text' name='name' required/>
-		</p>
-	</label>
-	<label>
-		<p>
-			Data następnego kontaktu:
-		</p>
-		<p>
-			<input type='date' name='nextContactAt' />
-		</p>
-	</label>
-	<label>
-		<p>
-			Notatki:
-		</p>
-		<p>
-			<textarea name='notes' id='' cols='30' rows='10'></textarea>
-		</p>
-	</label>
-	<p>
-		<button type='submit'>Zapisz</button>
-	</p>
-</form>
+<a href="/client" class="back-link">← Wszyscy klienci</a>
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">NOWA RELACJA</p>
+    <h1>Dodaj klienta<span>.</span></h1>
+    <p>Najważniejsze informacje, zawsze pod ręką.</p>
+  </div>
+</section>
+<div class="form-layout">
+  <section class="form-card">
+    <div class="section-heading">
+      <span class="section-number">01</span>
+      <div>
+        <h2>Dane klienta</h2>
+        <p>Zacznij od podstaw. Szczegóły możesz uzupełnić później.</p>
+      </div>
+    </div>
+    <form method="POST" action="/client" class="client-form">
+      <div class="form-grid">
+        <label
+          >Imię lub nazwa klienta <span class="required">*</span
+          ><input
+            name="name"
+            required
+            minlength="3"
+            placeholder="np. Anna Kowalska"
+            autocomplete="name" /></label
+        ><label
+          >Adres e-mail <span class="required">*</span
+          ><input
+            type="email"
+            name="mail"
+            required
+            placeholder="anna@firma.pl"
+            autocomplete="email"
+        /></label>
+      </div>
+      <label
+        >Data następnego kontaktu<input type="date" name="nextContactAt" /><small
+          >Zaplanuj dobry moment na kolejną rozmowę.</small
+        ></label
+      >
+      <label
+        >Notatki<textarea
+          name="notes"
+          rows="5"
+          placeholder="O czym warto pamiętać? Ustalenia, potrzeby, pomysły…"
+        ></textarea>
+      </label>
+      <div class="form-actions">
+        <span>* Pola wymagane</span><a class="button secondary" href="/client">Anuluj</a
+        ><button class="button primary" type="submit">＋ Dodaj klienta</button>
+      </div>
+    </form>
+  </section>
+  <aside class="form-tip">
+    <span>✳</span>
+    <h3>Zrób miejsce na<br />dobrą współpracę.</h3>
+    <p>
+      Zapisuj nie tylko dane, ale też to, co ważne dla Twojego klienta. Przy kolejnej rozmowie
+      docenisz te szczegóły.
+    </p>
+    <div>Małe gesty. Trwałe relacje.</div>
+  </aside>
+</div>

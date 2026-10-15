@@ -1,38 +1,48 @@
-<h2>Edytujesz {{client.name}}(<small>{{client.id}}</small>)</h2>
-<form class="form-edit-client" method='POST' action='/client/{{client.id}}?_method=PUT'>
-	<label>
-		<p>
-			E-mail:
-		</p>
-		<p>
-			<input type='email' name='mail' value="{{client.mail}}" />
-		</p>
-	</label>
-	<label>
-		<p>
-			Imię:
-		</p>
-		<p>
-			<input type='text' name='name' value="{{client.name}}" />
-		</p>
-	</label>
-	<label>
-		<p>
-			Data następnego kontaktu:
-		</p>
-		<p>
-			<input type='date' name='nextContactAt' value="{{client.nextContactAt}}" />
-		</p>
-	</label>
-	<label>
-		<p>
-			Notatki:
-		</p>
-		<p>
-			<textarea name='notes' id='' cols='30' rows='10'>{{client.notes}}</textarea>
-		</p>
-	</label>
-	<p>
-		<button type='submit'>Zapisz zmiany</button>
-	</p>
-</form>
+<a href="/client/{{client.id}}" class="back-link">← Szczegóły klienta</a>
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">DBAJ O AKTUALNOŚĆ</p>
+    <h1>Edytuj klienta<span>.</span></h1>
+    <p>Uaktualnij dane i zaplanuj następny krok.</p>
+  </div>
+</section>
+<section class="form-card edit-card">
+  <div class="section-heading">
+    <span class="section-number">01</span>
+    <div>
+      <h2>Dane klienta</h2>
+      <p>{{client.name}}</p>
+    </div>
+  </div>
+  <form method="POST" action="/client/{{client.id}}?_method=PUT" class="client-form">
+    <div class="form-grid">
+      <label
+        >Imię lub nazwa klienta <span class="required">*</span
+        ><input
+          name="name"
+          required
+          minlength="3"
+          value="{{client.name}}"
+          autocomplete="name" /></label
+      ><label
+        >Adres e-mail <span class="required">*</span
+        ><input type="email" name="mail" required value="{{client.mail}}" autocomplete="email"
+      /></label>
+    </div>
+    <label
+      >Data następnego kontaktu<input
+        type="date"
+        name="nextContactAt"
+        value="{{client.nextContactAt}}"
+      /><small>Zaplanuj dobry moment na kolejną rozmowę.</small></label
+    >
+    <label
+      >Notatki<textarea name="notes" rows="6" placeholder="Najważniejsze ustalenia…">
+{{client.notes}}</textarea>
+    </label>
+    <div class="form-actions">
+      <span>* Pola wymagane</span><a class="button secondary" href="/client/{{client.id}}">Anuluj</a
+      ><button class="button primary" type="submit">Zapisz zmiany ↗</button>
+    </div>
+  </form>
+</section>

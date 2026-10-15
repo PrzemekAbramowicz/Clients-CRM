@@ -1,47 +1,115 @@
-<h2>Lista klientów</h2>
-
-<table>
-	<thead>
-		<tr>
-			<th>
-				E-mail:
-			</th>
-			<th>
-				Imię:
-			</th>
-			<th>
-				Data następnego kontaktu:
-			</th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-		{{#each clients}}
-			<tr>
-				<th>
-					<a href='mailto:{{this.mail}}' target='_blank'>{{this.mail}}</a>
-				</th>
-				<td>
-					<a href='/client/{{this.id}}'>{{this.name}}</a>
-				</td>
-				<td>
-					{{this.nextContactAt}}
-				</td>
-				<td>
-					<button>
-						<a href='/client/{{this.id}}'>Szczegóły</a>
-					</button>
-					<form class="form-options-homepage" method='POST' action='/client/{{this.id}}?_method=DELETE'>
-						<button type='submit'>Usuń</button>
-					</form>
-				</td>
-			</tr>
-		{{/each}}
-	</tbody>
-</table>
-
-<div>
-	<form method='GET' action='/client/form/add'>
-		<button class="add-client-btn" type='submit'>Dodaj nowego klienta</button>
-	</form>
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">DOBRZE MIEĆ WSZYSTKO POD RĘKĄ</p>
+    <h1>Twoi klienci<span>.</span></h1>
+    <p>Zadbaj o relacje. Resztę uporządkuj tutaj.</p>
+  </div>
+  <a class="button primary" href="/client/form/add"><span>＋</span> Dodaj klienta</a>
+</section>
+<section class="stats" aria-label="Podsumowanie klientów">
+  <article class="stat-card">
+    <div><span>Wszyscy klienci</span><span class="stat-icon">♧</span></div>
+    <strong id="total-count">{{clients.length}}</strong>
+    <p>Relacje, które budujesz</p>
+  </article>
+  <article class="stat-card">
+    <div><span>Kontakt w tym tygodniu</span><span class="stat-icon mint">▦</span></div>
+    <strong id="week-count">—</strong>
+    <p>Zaplanowane na najbliższe 7 dni</p>
+  </article>
+  <article class="stat-card">
+    <div><span>Wymagają kontaktu</span><span class="stat-icon peach">◷</span></div>
+    <strong id="overdue-count">—</strong>
+    <p>Warto wrócić do rozmowy</p>
+  </article>
+</section>
+<section class="clients-panel">
+  <div class="panel-heading">
+    <div>
+      <h2>Baza klientów <span class="count-badge">{{clients.length}}</span></h2>
+      <p>Wszystkie kontakty. Jedno miejsce.</p>
+    </div>
+    <span class="panel-decoration" aria-hidden="true">↗</span>
+  </div>
+  <div class="toolbar">
+    <label class="search-box"
+      ><span aria-hidden="true">⌕</span
+      ><input
+        type="search"
+        id="client-search"
+        placeholder="Szukaj imienia lub adresu e-mail…"
+        aria-label="Szukaj klientów" /></label
+    ><label class="filter-box"
+      ><span>Status:</span
+      ><select id="status-filter" aria-label="Filtruj według terminu kontaktu">
+        <option value="all">Wszyscy klienci</option>
+        <option value="overdue">Po terminie</option>
+        <option value="upcoming">Zaplanowany</option>
+        <option value="none">Bez terminu</option>
+      </select></label
+    >
+  </div>
+  <div class="table-scroll">
+    <table class="clients-table">
+      <thead>
+        <tr>
+          <th>Klient</th>
+          <th>Adres e-mail</th>
+          <th>Następny kontakt</th>
+          <th>Status kontaktu</th>
+          <th><span class="sr-only">Działania</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each clients}}
+        <tr
+          class="client-row"
+          data-name="{{name}}"
+          data-mail="{{mail}}"
+          data-date="{{nextContactAt}}"
+        >
+          <td>
+            <a class="client-identity" href="/client/{{id}}"
+              ><span class="avatar client-avatar" aria-hidden="true"></span
+              ><span>{{name}}<small>Klient</small></span></a
+            >
+          </td>
+          <td><a class="email-link" href="mailto:{{mail}}">{{mail}}</a></td>
+          <td>
+            <span class="contact-date"
+              >{{#if nextContactAt}}{{nextContactAt}}{{else}}Nie ustalono{{/if}}</span
+            >
+          </td>
+          <td>
+            <span class="status-badge"
+              >{{#if nextContactAt}}Zaplanowany{{else}}Bez terminu{{/if}}</span
+            >
+          </td>
+          <td>
+            <a class="row-link" href="/client/{{id}}" aria-label="Szczegóły klienta {{name}}"
+              >Szczegóły <span>↗</span></a
+            >
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  <div class="empty-state" id="empty-state" {{#if clients.length}}hidden{{/if}}>
+    <span>⌕</span>
+    <h3>Jeszcze nic tu nie ma</h3>
+    <p id="empty-description">Dodaj pierwszego klienta i zacznij budować relacje.</p>
+    <a href="/client/form/add" class="button secondary">Dodaj klienta</a>
+  </div>
+  <div class="table-footer">
+    <span id="results-count" aria-live="polite">Liczba klientów: {{clients.length}}</span
+    ><span>Każda relacja zaczyna się od rozmowy.</span>
+  </div>
+</section>
+<div class="bottom-note">
+  <span>✳</span>
+  <p>
+    <strong>Dobra relacja zaczyna się od kontaktu.</strong> Zapisz termin kolejnej rozmowy, żeby o
+    niej pamiętać.
+  </p>
 </div>

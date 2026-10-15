@@ -1,15 +1,64 @@
-<!DOCTYPE html>
 <html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clients CRM</title>
-    <link rel="stylesheet" href="/assets/styles/style.css">
-</head>
-<body>
-    <h1>Clients CRM</h1>
-    <hr>
-    {{{body}}}
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#183e36" />
+    <title>Clients — Twoje relacje, w jednym miejscu</title>
+    <link rel="stylesheet" href="/assets/styles/style.css" />
+    <script src="/assets/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Przejdź do treści</a>
+    <aside class="sidebar">
+      <a class="brand" href="/client"
+        ><span class="brand-mark">c<span>•</span></span
+        >clients<span class="brand-dot">.</span></a
+      >
+      <div class="workspace">
+        <span class="workspace-icon">P</span>
+        <div>Moja przestrzeń<small>Osobisty CRM</small></div>
+        <span class="workspace-dots">•••</span>
+      </div>
+      <p class="nav-label">PRZESTRZEŃ ROBOCZA</p>
+      <nav aria-label="Nawigacja główna">
+        <a class="nav-item active" href="/client"
+          ><span aria-hidden="true">▦</span>
+          Klienci
+          <span class="nav-arrow">↗</span></a
+        >
+        <a class="nav-item" href="/client/form/add"
+          ><span aria-hidden="true">＋</span> Dodaj klienta</a
+        >
+      </nav>
+      <div class="sidebar-note">
+        <span class="note-symbol">✳</span>
+        <h3>Relacje mają znaczenie.</h3>
+        <p>Mały krok dzisiaj.<br />Dobra współpraca jutro.</p>
+        <a href="/client/form/add">Poznaj kolejnego klienta <span>↗</span></a>
+      </div>
+      <div class="sidebar-footer">
+        <span class="avatar owner">P</span>
+        <div>Moja przestrzeń<small>Wszystko pod ręką</small></div>
+        <span class="online-dot" title="Lokalna przestrzeń"></span>
+      </div>
+    </aside>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          Przestrzeń robocza
+          <span>/</span>
+          <strong>Klienci</strong>
+        </div>
+        <div class="topbar-right">
+          <span class="local-badge"><i></i> Lokalna przestrzeń</span
+          ><span class="avatar owner small">P</span>
+        </div>
+      </header>
+      <main id="content">{{{body}}}</main>
+      <footer class="page-footer">
+        <span>clients. <span class="footer-muted">Mniej chaosu. Więcej relacji.</span></span
+        ><span>Twoja przestrzeń do współpracy</span>
+      </footer>
+    </div>
+  </body>
 </html>
