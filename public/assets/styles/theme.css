@@ -1,0 +1,253 @@
+/* Forest & Sand: shared theme for the CRM workspace. */
+:root {
+  --bg: #eceee7;
+  --paper: #fffefb;
+  --ink: #213b34;
+  --muted: #63766c;
+  --green: #245947;
+  --mint: #e0ebda;
+  --line: #dce2d7;
+  --forest: #173d33;
+  --lime: #d4e9a3;
+}
+
+body {
+  background: var(--bg);
+}
+
+.sidebar {
+  background: var(--forest);
+  color: #f1f5e9;
+  border-color: #244d40;
+}
+
+.brand {
+  color: #f6f8ef;
+}
+
+.brand-mark {
+  background: var(--lime);
+  color: var(--forest);
+}
+
+.brand-mark span {
+  color: #4d7553;
+}
+
+.brand-dot,
+.note-symbol {
+  color: var(--lime);
+}
+
+.workspace {
+  background: #21483b;
+  border-color: #385c4d;
+}
+
+.workspace-icon,
+.sidebar .owner {
+  background: #3a5e4c;
+  color: #e3edc6;
+}
+
+.workspace small,
+.sidebar-footer small,
+.workspace-dots,
+.nav-label {
+  color: #b0c6b6;
+}
+
+.nav-item {
+  color: #c4d4c6;
+}
+
+.nav-item:hover {
+  background: #2a5142;
+  color: #fff;
+}
+
+.nav-item.active {
+  background: var(--lime);
+  color: #213e2c;
+  box-shadow: 0 4px 16px #091c2220;
+}
+
+.sidebar-note {
+  background: #244c3d;
+  border: 1px solid #3a5e4c;
+}
+
+.sidebar-note p {
+  color: #bdcebc;
+}
+
+.sidebar-note a {
+  color: #dcecb8;
+}
+
+.sidebar-footer {
+  border-color: #3a594b;
+}
+
+.online-dot {
+  background: #c5df93;
+}
+
+.topbar {
+  background: #e5e9de;
+  border-color: #d2dace;
+  color: #5d7161;
+}
+
+.topbar > div > span {
+  color: #8b9d88;
+}
+
+.topbar .local-badge {
+  color: #55715c;
+}
+
+.topbar .owner {
+  background: #d2dcc6;
+  color: #4c6547;
+}
+
+.eyebrow {
+  color: #5e795c;
+}
+
+.page-heading p:not(.eyebrow) {
+  color: #66786c;
+}
+
+.primary {
+  background: var(--green);
+  box-shadow: 0 4px 10px #20473118;
+}
+
+.primary:hover {
+  background: #183e31;
+}
+
+.stat-card {
+  background: #f7f8f0;
+  border-color: #d9e0d1;
+  box-shadow: 0 3px 10px #223c2512;
+}
+
+.stat-card:first-child {
+  background: var(--forest);
+  border-color: var(--forest);
+  color: #f7f9ed;
+}
+
+.stat-card:first-child > div,
+.stat-card:first-child p {
+  color: #c0d2ba;
+}
+
+.stat-card:first-child .stat-icon {
+  background: #355b43;
+  color: var(--lime);
+}
+
+.stat-card:nth-child(2) {
+  background: #e0e9cf;
+  border-color: #cedcbc;
+}
+
+.stat-card:nth-child(3) {
+  background: #f0e7d7;
+  border-color: #e2d7c4;
+}
+
+.stat-card > div,
+.stat-card p {
+  color: #5f705b;
+}
+
+.clients-panel,
+.form-card,
+.message-card {
+  background: var(--paper);
+  border-color: #d7ded2;
+  box-shadow: 0 5px 20px #24392508;
+}
+
+.panel-heading,
+.section-heading {
+  background: #f5f5ed;
+}
+
+.clients-table th {
+  background: #eaf0e2;
+  color: #52684f;
+  border-color: #dce4d3;
+}
+
+.clients-table td {
+  border-color: #e5e9df;
+}
+
+.clients-table tbody tr:hover {
+  background: #f0f5e8;
+}
+
+.search-box,
+.client-form input,
+.client-form textarea {
+  background: #f8f9f3;
+  border-color: #d5decf;
+}
+
+.filter-box select {
+  background: #f8f9f3;
+  border-color: #d5decf;
+  color: #4e644f;
+}
+
+.count-badge,
+.section-number {
+  background: #dce8cf;
+  color: #466440;
+}
+
+.table-footer {
+  background: #f5f6ee;
+  color: #65775f;
+}
+
+.table-footer > span:last-child,
+.bottom-note,
+.bottom-note strong,
+.page-footer,
+.footer-muted {
+  color: #687d62;
+}
+
+.form-tip {
+  background: #dfe8ce;
+  border: 1px solid #cddbb9;
+  color: #3d5b37;
+}
+
+.form-tip p,
+.form-tip > div {
+  color: #5f7353;
+}
+
+.status-badge.overdue {
+  background: #f4e5d4;
+  color: #885322;
+}
+
+.status-badge.upcoming {
+  background: #e0ecd7;
+  color: #406736;
+}
+
+@media (max-width: 640px) {
+  .sidebar {
+    border-bottom-color: #315644;
+  }
+}
