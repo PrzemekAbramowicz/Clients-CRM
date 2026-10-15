@@ -63,3 +63,28 @@ test('CRM: pages, validation, CRUD and persisted data', async () => {
     rmSync(dir, { recursive: true, force: true });
   }
 });
+
+// Hosting imports the module instead of running `node index.js`.
+test('Hosting entry point exports Express and renders independently of working directory', async () => {
+  const app = require('../index');
+  assert.equal(typeof app, 'function');
+  assert.equal(typeof app.listen, 'function');
+  const originalDirectory = process.cwd();
+  const server = app.listen(0, '127.0.0.1');
+  await new Promise((resolve) => server.once('listening', resolve));
+  try {
+    process.chdir(tmpdir());
+    const base = `http://127.0.0.1:${server.address().port}`;
+    for (const route of ['/client', '/client/form/add']) {
+      const response = await fetch(base + route);
+      assert.equal(response.status, 200);
+      assert.match(await response.text(), /<!DOCTYPE html>/i);
+    }
+    const missing = await fetch(base + '/client/not-a-client');
+    assert.equal(missing.status, 404);
+    assert.match(await missing.text(), /Wróć do listy klientów/);
+  } finally {
+    process.chdir(originalDirectory);
+    await new Promise((resolve) => server.close(resolve));
+  }
+});

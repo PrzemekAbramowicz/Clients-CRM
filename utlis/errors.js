@@ -9,6 +9,10 @@ function handleError(err, req, res, next) {
     return;
   }
 
+  if (!(err instanceof ValidationError)) {
+    console.error('Unhandled CRM error:', err);
+  }
+
   res.status(err instanceof ValidationError ? 400 : 500);
 
   res.render('error', {

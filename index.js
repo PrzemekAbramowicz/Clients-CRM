@@ -14,7 +14,14 @@ function createApp(db = new Db()) {
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
   app.use(express.static(path.join(__dirname, 'public'), { index: false }));
-  app.engine('.hbs', hbs.engine({ extname: '.hbs' }));
+  app.engine(
+    '.hbs',
+    hbs.engine({
+      extname: '.hbs',
+      layoutsDir: path.join(__dirname, 'views/layouts'),
+      partialsDir: path.join(__dirname, 'views/partials'),
+    })
+  );
   app.set('view engine', '.hbs');
   app.set('views', path.join(__dirname, 'views'));
   app.use('/', homeRouter);
@@ -24,11 +31,15 @@ function createApp(db = new Db()) {
   return app;
 }
 
+const app = createApp();
+
 if (require.main === module) {
   const port = process.env.PORT || 3000;
-  createApp().listen(port, '127.0.0.1', () => {
+  app.listen(port, '127.0.0.1', () => {
     console.log(`CRM: http://127.0.0.1:${port}`);
   });
 }
 
-module.exports = { createApp };
+// Vercel invokes the exported Express request handler.
+module.exports = app;
+module.exports.createApp = createApp;

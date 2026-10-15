@@ -35,3 +35,20 @@ Dane są przechowywane w `data/client.json`; repozytorium zawiera przykładowych
 Przed zmianami warto skopiować ten plik. Serwer nasłuchuje wyłącznie lokalnie.
 Zapis JSON jest przeznaczony dla jednego procesu i małej bazy demonstracyjnej.
 Projekt nie ma jeszcze logowania ani bazy SQL — to lokalny punkt wyjścia do dalszego rozwoju portfolio.
+
+## Wdrożenie na Vercel
+
+Projekt eksportuje aplikację Express z `index.js`. Plik `vercel.json` wybiera
+framework Express i dołącza szablony Handlebars oraz plik danych do funkcji.
+W ustawieniach projektu użyj katalogu głównego repozytorium jako Root Directory.
+Usuń własne nadpisania Build Command i Output Directory, jeśli były ustawione.
+Po wysłaniu zmian do repozytorium uruchom nowy deployment.
+
+**Ograniczenie przechowywania danych:** odczyt klientów z dołączonego JSON działa,
+ale zapis do pliku aplikacji nie jest obsługiwany na Vercel. Do trwałego dodawania,
+edytowania i usuwania klientów online trzeba podłączyć zewnętrzną bazę danych.
+Katalog tymczasowy ani pamięć procesu nie zastępują trwałej bazy danych.
+Lokalne uruchomienie nadal zapisuje dane do JSON.
+
+W razie błędu 500 sprawdź Runtime Logs deploymentu. Nieoczekiwane błędy aplikacji
+są logowane po stronie serwera, bez ujawniania szczegółów w interfejsie.
